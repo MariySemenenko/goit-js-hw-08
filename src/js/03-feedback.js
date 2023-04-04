@@ -2,7 +2,7 @@ import throttle from 'lodash.throttle';
 
 const KEY = 'feedback-form-state';//задаю ключ для сховища
 
-form = document.querySelector('.feedback-form');//отримую форму та її поля
+const form = document.querySelector('.feedback-form');//отримую форму та її поля
 
 // додаю обробник події на введення даних користувачем
 form.addEventListener('input', throttle(onInputData, 500));
@@ -20,6 +20,9 @@ function onInputData(e) {//форма для введення користува
 function onFormSubmit(e) {
   e.preventDefault();//зупиняю перезавантаження
   console.log({ email: email.value, message: message.value });//виводю обьєкт в консоль
+  if ( email.value === '' ||  message.value === '') { //перевіряю якщо форма буде пуста
+   return alert('fill out the form');
+  }
 
 
   localStorage.removeItem(KEY);//видаляю данні
