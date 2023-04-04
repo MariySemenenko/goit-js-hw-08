@@ -8,7 +8,7 @@ const form = document.querySelector('.feedback-form');//отримую форм�
 form.addEventListener('input', throttle(onInputData, 500));
 form.addEventListener('submit', onFormSubmit);//подія на відправку форми
 
-//oтримую данні зі сховища та розпарсюю 
+//oтримую данні зі сховища та розпарсюю в обьєкт
 let dataForm = JSON.parse(localStorage.getItem(KEY)) || {};
 const { email, message } = form.elements; //сюди потрапляє інформація з атрибутом name
 
