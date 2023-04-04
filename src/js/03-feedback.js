@@ -12,20 +12,29 @@ form.addEventListener('submit', onFormSubmit);//подія на відправк
 let dataForm = JSON.parse(localStorage.getItem(KEY)) || {};
 const { email, message } = form.elements;
 
+
 function onInputData(e) {//форма для введення користувачем данних
   dataForm = { email: email.value, message: message.value };
   localStorage.setItem(KEY, JSON.stringify(dataForm));//приймаємо значення і перетворюємо в рядок
 }
 
+
 function onFormSubmit(e) {
   e.preventDefault();//зупиняю перезавантаження
-  console.log({ email: email.value, message: message.value });//виводю обьєкт в консоль
-  if ( email.value === '' ||  message.value === '') { //перевіряю якщо форма буде пуста
-   return alert('fill out the form');
-  }
-
+  if ( email.value === dataForm.email || message.value === dataForm.message) {
+      console.log({ email: email.value, message: message.value });
+    }
+    else {
+      return alert('fill out the form');
+    }
+  
 
   localStorage.removeItem(KEY);//видаляю данні
   e.currentTarget.reset();
   dataForm = {};
 }
+// данні що є в локалсторадж не записуються в форму після оновлення сторінки.
+//  Треба не просто витягати об'єкт, а вписувати в value відповідних полів отримані значення.
+//   При сабміті спочатку перевіряємо, чи всі поля заповнені, потім вже виводимо в консоль, 
+//   якщо все заповнено, бо зараз виводить в консоль навіть не заповнену форму.
+

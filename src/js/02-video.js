@@ -14,7 +14,7 @@ const iframe = document.querySelector('iframe');
     };
     
 
-    player.on('play', throttle(onPlay, 1000)); 
+    player.on('timeupdate', throttle(onPlay, 1000)); 
     
 
     // Якщо значення відсутнє, початковий час- 0
