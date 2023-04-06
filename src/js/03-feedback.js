@@ -28,12 +28,14 @@ function reloedPage() {//перезавантаження сторінки
 
 function onFormSubmit(e) {
   e.preventDefault();//зупиняю перезавантаження
+    
       if (email.value === '' || message.value === '') {
         return alert('Please fill in all the fields!');
       } else {
         console.log({ email: email.value, message: message.value });
       }
   
+
   localStorage.removeItem(KEY);//видаляю данні
   e.currentTarget.reset();
   dataForm = {};
